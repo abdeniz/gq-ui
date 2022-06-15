@@ -6,7 +6,11 @@ import SideMenu from "./components/SideMenu";
 function App() {
   return (
     <ChakraProvider resetCSS>
-      <Grid h="100vh" templateColumns="280px auto" templateRows="60px auto">
+      <Grid
+        h="100vh"
+        templateColumns="minmax(50px, min-content) auto"
+        templateRows="60px auto"
+      >
         <MainMenu />
 
         <SideMenu />

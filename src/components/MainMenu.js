@@ -47,6 +47,7 @@ const MainMenu = () => {
             <MenuList>
               <MenuItem>Profile</MenuItem>
               <MenuItem>Settings</MenuItem>
+              <MenuItem>Sign out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>
