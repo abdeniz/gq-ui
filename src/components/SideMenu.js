@@ -42,6 +42,7 @@ const SideMenu = () => {
           {isCollapsed ? (
             <MenuButton
               as={IconButton}
+              variant="outline"
               icon={<SettingsIcon />}
               marginBottom="6"
             />
@@ -76,7 +77,8 @@ const SideMenu = () => {
               icon={<Icon w="6" h="6" color="#121212" as={GrNodes} />}
             />
             <IconButton
-              icon={<Icon w="6" h="6" color="#676873" as={FiDatabase} />}
+              icon={<Icon w="6" h="6" color="#121212" as={FiDatabase} />}
+              variant="outline"
             />
           </>
         ) : (
@@ -114,6 +116,8 @@ const SideMenu = () => {
             <Icon w="6" h="6" as={TbLayoutSidebarLeftCollapse} />
           )
         }
+        variant="outline"
+        bg="#fff"
         onClick={() => setIsCollapsed((isCollapsed) => !isCollapsed)}
       />
     </GridItem>
