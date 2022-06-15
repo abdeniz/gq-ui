@@ -1,6 +1,6 @@
 import {GridItem} from "@chakra-ui/react";
 import React from "react";
-import ZoomButtons from "./ZoomButtons";
+import ZoomControl from "./ZoomControl";
 
 const MainView = () => {
   return (
@@ -11,7 +11,7 @@ const MainView = () => {
         bgColor="#fafafa"
         position="relative"
       >
-        <ZoomButtons />
+        <ZoomControl />
       </GridItem>
     </>
   );
