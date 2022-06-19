@@ -1,24 +1,27 @@
-import {ChakraProvider, Grid} from "@chakra-ui/react";
-import MainMenu from "./components/MainMenu";
-import MainView from "./components/MainView";
-import SideMenu from "./components/SideMenu";
+import {ChakraProvider} from "@chakra-ui/react";
+import {useEffect, useState} from "react";
+import AppView from "./components/AppView";
+import LoginView from "./components/LoginView";
+import {supabase} from "./utils/supabaseClient";
 
-function App() {
+const App = () => {
+  const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    setSession(supabase.auth.session());
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  console.log(session);
+
   return (
     <ChakraProvider resetCSS>
-      <Grid
-        h="100vh"
-        templateColumns="minmax(50px, min-content) auto"
-        templateRows="60px auto"
-      >
-        <MainMenu />
-
-        <SideMenu />
-
-        <MainView />
-      </Grid>
+      {!session ? <LoginView /> : <AppView />}
     </ChakraProvider>
   );
-}
+};
 
 export default App;
