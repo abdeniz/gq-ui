@@ -7,5 +7,9 @@ export default async function getAvatar(user) {
     .eq("id", user?.id)
     .single();
 
+  if (data.avatar_url === "" || !data.avatar_url) {
+    return user.user_metadata.avatar_url;
+  }
+
   return data.avatar_url;
 }
