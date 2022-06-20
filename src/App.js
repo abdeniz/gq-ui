@@ -15,11 +15,9 @@ const App = () => {
     });
   }, []);
 
-  console.log(session);
-
   return (
     <ChakraProvider resetCSS>
-      {!session ? <LoginView /> : <AppView />}
+      {!session ? <LoginView /> : <AppView session={session} />}
     </ChakraProvider>
   );
 };
