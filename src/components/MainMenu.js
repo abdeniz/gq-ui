@@ -23,13 +23,18 @@ const MainMenu = ({session}) => {
 
   const {isOpen, onOpen, onClose} = useDisclosure();
 
+  const currentUser = supabase.auth.user();
+
   useEffect(() => {
-    const currentUser = supabase.auth.user();
+    handleAvatar();
+  });
+
+  const handleAvatar = () => {
     getAvatar(currentUser).then((avatarUrl) => setAvatarUrl(avatarUrl));
     setName(
       currentUser.user_metadata.full_name ?? currentUser.user_metadata.user_name
     );
-  }, [session]);
+  };
 
   return (
     <>
@@ -74,7 +79,12 @@ const MainMenu = ({session}) => {
           </Flex>
         </Flex>
       </GridItem>
-      <SettingsModal session={session} isOpen={isOpen} onClose={onClose} />
+      <SettingsModal
+        session={session}
+        isOpen={isOpen}
+        onClose={onClose}
+        handleAvatar={handleAvatar}
+      />
     </>
   );
 };

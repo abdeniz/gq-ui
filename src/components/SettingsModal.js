@@ -8,19 +8,9 @@ import {
   ModalHeader,
   ModalOverlay,
 } from "@chakra-ui/react";
-import {useEffect, useState} from "react";
-import getAvatar from "../utils/getAvatar";
-import {supabase} from "../utils/supabaseClient";
 import AvatarUpload from "./AvatarUpload";
 
-const SettingsModal = ({isOpen, onClose, session}) => {
-  const [avatarUrl, setAvatarUrl] = useState();
-
-  useEffect(() => {
-    const currentUser = supabase.auth.user();
-    getAvatar(currentUser).then((avatarUrl) => setAvatarUrl(avatarUrl));
-  }, []);
-
+const SettingsModal = ({isOpen, onClose, handleAvatar}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -28,14 +18,20 @@ const SettingsModal = ({isOpen, onClose, session}) => {
         <ModalHeader>Profile settings</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <AvatarUpload avatarUrl={avatarUrl} />
+          <AvatarUpload />
         </ModalBody>
 
         <ModalFooter>
           <Button variant="outline" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button colorScheme="red" onClick={onClose}>
+          <Button
+            colorScheme="red"
+            onClick={() => {
+              handleAvatar();
+              onClose();
+            }}
+          >
             Save
           </Button>
         </ModalFooter>
