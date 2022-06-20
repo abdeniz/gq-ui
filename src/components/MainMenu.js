@@ -26,7 +26,9 @@ const MainMenu = ({session}) => {
   useEffect(() => {
     const currentUser = supabase.auth.user();
     getAvatar(currentUser).then((avatarUrl) => setAvatarUrl(avatarUrl));
-    setName(currentUser.user_metadata.full_name);
+    setName(
+      currentUser.user_metadata.full_name ?? currentUser.user_metadata.user_name
+    );
   }, [session]);
 
   return (
